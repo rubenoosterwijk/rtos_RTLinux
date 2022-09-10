@@ -1,0 +1,2 @@
+pi@rpi:~/N-Queens-Problem $ uname -r
+4.19.71-rt24-v7l+
