@@ -1,0 +1,51 @@
+NORMAL scheduling policy of Linux, Thread1 & Thread2 are not equal priority.
+In this policy, Thread1 and Thread2 both have a chance to run although thread1 has higher priority and runs first.  Also, Thread1 with higher priority will get time to run longer than Thread2. 
+Thread_NORMAL.c
+Result:
+count1 = 98563, count2 = 1438
+Thread 1 returns: 0
+Thread 2 returns: 0 
+
+FIFO scheduling policy of Linux, Thread1 priority is higher Thread2 priority.
+Thread2 has no chance to run because its priority is lower thread1. 
+Thread_FIFO_1.c
+Result:   
+count1 = 100000, count2 = 0
+Thread 1 returns: 0
+Thread 2 returns: 0
+
+FIFO scheduling policy of Linux, Thread1 priority is lower Thread2 priority.
+Because thread1 starts first,  it runs for a short time before preemption by thread2 which has higher priority. When thread2 runs, thread1 has no chance to run again.  
+Thread_FIFO_2.c
+Result:  
+count1 = 5444, count2 = 94557
+Thread 1 returns: 0
+Thread 2 returns: 0     
+
+FIFO scheduling policy of Linux, Thread1 and Thread2 are equal priority. Thread1 runs first. Because thread1 runs first and no thread has a priority higher than thread1, thread1 runs "forever." This is opposite to the Round-Robin policy.   
+Thread_FIFO_3.c
+Result:  
+count1 = 100000, count2 = 0
+Thread 1 returns: 0
+Thread 2 returns: 0
+
+Round Robin scheduling policy of Linux, Thread1 priority is higher Thread2 priority. Thread2 has no chance to run because its priority is lower thread1 
+Thread_RR_1.c
+Result:     
+count1 = 100000, count2 = 0
+Thread 1 returns: 0
+Thread 2 returns: 0 
+
+Round Robin scheduling policy of Linux, Thread1 priority is lower Thread2 priority. Because thread1 starts first,  it runs a short time before being preempted by thread2 which has higher priority. When thread2 runs, thread1 has no chance to run again.  
+Thread_RR_2.c
+Result:  
+count1 = 5809, count2 = 94192
+Thread 1 returns: 0
+Thread 2 returns: 0       
+
+Round Robin scheduling policy of Linux, Thread1 & Thread2 of equal priority. Thread1 runs first. Both thread1 and thread2 have the same chance to run. This is opposite to the FIFO policy. There is a slight difference between value of count1 and count2, because the time to execute the program in thread1 might slightly differ from thread2.
+Thread_RR_3.c
+Result:        
+count1 = 48936, count2 = 51065
+Thread 1 returns: 0
+Thread 2 returns: 0       
